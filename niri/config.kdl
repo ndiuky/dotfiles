@@ -1,21 +1,35 @@
+environment {
+    XDG_SESSION_TYPE "wayland"
+    QT_QPA_PLATFORM "wayland"
+
+    // for x-wayland apps
+    DISPLAY ":0"
+
+    // for java based apps
+    _JAVA_AWT_WM_NONREPARENTING "1"
+
+    XCURSOR_THEME "Bibata-Modern-Classic"
+    XCURSOR_SIZE "24"
+    WLR_NO_HARDWARE_CURSOR "1"
+
+    MOZ_ENABLE_WAYLAND "1"
+    MOZ_USE_XINPUT2 "1"
+}
+
 input {
     keyboard {
         xkb {
             layout "us,ru,az"
-            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            options "grp:win_space_toggle"
         }
-
-        numlock
     }
 
     touchpad {
         tap
         natural-scroll
+        scroll-factor 0.4
+        click-method "clickfinger"
     }
-
-    mouse {}
-
-    trackpoint {}
 }
 
 /-output "eDP-1" {
@@ -32,11 +46,13 @@ layout {
     gaps 10
 
     center-focused-column "never"
+    always-center-single-column
 
     preset-column-widths {
-        proportion 0.33333
+        proportion 1.0
+        proportion 0.75
         proportion 0.5
-        proportion 0.66667
+        proportion 0.25
     }
 
     default-column-width { proportion 0.5; }
@@ -51,34 +67,13 @@ layout {
 
     border {
         off
-
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
-
-        urgent-color "#9b0000"
     }
-
-    shadow {
-        on
-
-        softness 30
-
-        spread 5
-
-        offset x=0 y=5
-
-        color "#0007"
-    }
-
-    struts {}
 }
 
 spawn-at-startup "waybar"
+spawn-at-startup "xwayland-satellite"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-animations {}
 
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
@@ -102,20 +97,6 @@ window-rule {
     clip-to-geometry true
 }
 
-environment {
-    XDG_SESSION_TYPE "wayland"
-    QT_QPA_PLATFORM "wayland"
-
-    DISPLAY ":0"
-    _JAVA_AWT_WM_NONREPARENTING "1"
-
-    XCURSOR_THEME "Bibata-Modern-Classic"
-    XCURSOR_SIZE "24"
-    WLR_NO_HARDWARE_CURSOR "1"
-
-    MOZ_ENABLE_WAYLAND "1"
-    MOZ_USE_XINPUT2 "1"
-}
 
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
