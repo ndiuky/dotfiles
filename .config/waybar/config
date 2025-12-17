@@ -13,10 +13,11 @@
     "tray",
     "wireplumber",
     "network",
+    "custom/weather",
     "battery",
     "hyprland/language",
     "clock"
-  ],
+ ],
   "hyprland/language": {
     "format": "{}",
     "format-en": "ENG",
@@ -27,6 +28,12 @@
     "spacing": 16,
     "on-scroll-up": "hyprctl dispatch workspace r+1",
     "on-scroll-down": "hyprctl dispatch workspace r-1"
+  },
+  "custom/weather": {
+      "class": "weather",
+      "exec": "curl -s 'wttr.in/Ganja?format=%c%t'",
+      "format": " {} ",
+      "interval": 300
   },
   "wlr/taskbar": {
     "format": "{icon} {title:.17}",

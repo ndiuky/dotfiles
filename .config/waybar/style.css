@@ -25,6 +25,10 @@
   font-size: 12.7px;
 }
 
+
+#custom-weather {
+}
+
 window#waybar {
   background: @bg_main;
   border-top: 1px solid @border_main;
